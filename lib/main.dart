@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'package:militery/hospita_form.dart'; // Make sure the file name is correct; it's typically `hospital_form.dart`
-import 'l10n/intl_en.dart';
-import 'l10n/intl_ku.dart';
-import 'l10n/intl_ar.dart';
+import 'package:militery/home.dart';
+import 'package:militery/hospita_form.dart';
+import 'package:militery/FBI.dart'; // Make sure the file name is correct; it's typically `hospital_form.dart`
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
+  @override
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,9 +28,10 @@ class MyApp extends StatelessWidget {
         Locale('ar'), // Arabic
       ],
       debugShowCheckedModeBanner: false,
-      initialRoute: '/hospital_form',
+      initialRoute: '/volunteer_form',
       routes: {
-
+        '/': (context) => const Home(),
+        '/volunteer_form': (context) => const FBI(),
         '/hospital_form': (context) => const HospitalForm(),
       },
     );

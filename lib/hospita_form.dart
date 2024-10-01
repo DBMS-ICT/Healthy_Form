@@ -9,15 +9,15 @@ class HospitalForm extends StatefulWidget {
 
 class _HospitalFormState extends State<HospitalForm> {
   // This controller is used to control the content of the TextField
-  TextEditingController _genderController = TextEditingController();
-  TextEditingController _blooodController = TextEditingController();
-  TextEditingController _chronicDiseasController = TextEditingController();
-  TextEditingController _allergiesController = TextEditingController();
-  TextEditingController _vesionController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
+  final TextEditingController _blooodController = TextEditingController();
+  final TextEditingController _chronicDiseasController = TextEditingController();
+  final TextEditingController _allergiesController = TextEditingController();
+  final TextEditingController _vesionController = TextEditingController();
   TextEditingController dateInput = TextEditingController();
 
   // This is the list of items for the dropdown
-  final List<String> _Gender = [
+  final _Gender = <String>[
     'نێر',
     'مێ',
   ];
@@ -31,7 +31,7 @@ class _HospitalFormState extends State<HospitalForm> {
     'AB+',
     'AB-',
   ];
-  final List<String> _ChronicDiseas = [
+  List<String> get _ChronicDiseas => [
     'نەخۆشی دڵ',
     'پەستانی خوێن بەرز',
     'شەکرە',
@@ -109,8 +109,8 @@ class _HospitalFormState extends State<HospitalForm> {
   @override
   void initState() {
     super.initState();
-    selectedLanguage = 'English'; // Default to English
-    containerList = buildListForLanguage('English');
+    selectedLanguage = 'Kurdish'; // Default to English
+    containerList = buildListForLanguage('Kurdish');
     dateInput.text = '';
     super.initState();
 
@@ -146,21 +146,21 @@ class _HospitalFormState extends State<HospitalForm> {
         TextField(
           controller: dateInput,
           style: const TextStyle(fontSize: 20),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             suffixIcon: Icon(Icons.calendar_month_outlined),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     color: Color.fromRGBO(191, 189, 189, 1.0), width: 3)),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'بەرواری لە دایک بوون',
-            labelStyle: const TextStyle(
+            labelStyle: TextStyle(
                 fontSize: 30,
                 color: Colors.green,
                 fontWeight: FontWeight.bold),
             hintText: '',
-            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
-            border: const OutlineInputBorder(),
-            focusedBorder: const OutlineInputBorder(
+            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
                 borderSide:
                 BorderSide(color: Colors.blueAccent, width: 3)),
           ),
@@ -184,7 +184,7 @@ class _HospitalFormState extends State<HospitalForm> {
 
 
 
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -192,7 +192,7 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _GenderItem,
               // The currently selected dropdown item
@@ -206,7 +206,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _GenderItem = newValue; // Update selected value
                   _genderController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -223,7 +223,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -231,11 +231,11 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             helperText:
-                'تکایە هەر نەخۆشییەک کە هەتبووە یان ئێستا هەتە دیاری بکە , ئەگەر هیچ کام لەمانە هەیە، تکایە ڕوونکردنەوە بدە',
-            helperStyle: TextStyle(color: Colors.grey, fontSize: 18),
+            'تکایە هەر نەخۆشییەک کە هەتبووە یان ئێستا هەتە دیاری بکە , ئەگەر هیچ کام لەمانە هەیە، تکایە ڕوونکردنەوە بدە',
+            helperStyle: const TextStyle(color: Colors.grey, fontSize: 18),
             helperMaxLines: 3,
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _BloodItem,
               // The currently selected dropdown item
@@ -249,7 +249,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _BloodItem = newValue; // Update selected value
                   _blooodController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -266,7 +266,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -277,7 +277,7 @@ class _HospitalFormState extends State<HospitalForm> {
             // helperStyle: TextStyle(color: Colors.grey,fontSize: 15),
 
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _ChronicDiseasItem,
               // The currently selected dropdown item
@@ -291,7 +291,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _ChronicDiseasItem = newValue; // Update selected value
                   _chronicDiseasController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -302,7 +302,7 @@ class _HospitalFormState extends State<HospitalForm> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'بوونی نەخۆشی',
             //hintText: 'تکایە هەر نەخۆشییەک کە هەتبووە یان ئێستا هەتە دیاری بکە',
-            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
             labelStyle: const TextStyle(
                 fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),
             border: const OutlineInputBorder(),
@@ -310,7 +310,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -318,7 +318,7 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _AllergiesItem,
               // The currently selected dropdown item
@@ -332,7 +332,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _AllergiesItem = newValue; // Update selected value
                   _allergiesController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -343,21 +343,21 @@ class _HospitalFormState extends State<HospitalForm> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: ' هەبوونی هەستیاریی',
             //hintText: 'ئایا هیچ هەستیارییەکت هەیە بۆ:',
-            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
             labelStyle: const TextStyle(
                 fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),
             border: const OutlineInputBorder(),
             focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
             helperText: 'ناوی هەر دەرمانێک کە ئێستا بەکاری دەهێنیت بنووسە:',
-            helperStyle: TextStyle(color: Colors.grey, fontSize: 18),
+            helperStyle: const TextStyle(color: Colors.grey, fontSize: 18),
             helperMaxLines: 3,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -380,7 +380,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -396,7 +396,7 @@ class _HospitalFormState extends State<HospitalForm> {
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
             helperText:
-                'ئایا هیچ سنووردارییەکی جەستەییت هەیە کە کاریگەری لەسەر خزمەتی سەربازیت هەبێت؟:',
+            'ئایا هیچ سنووردارییەکی جەستەییت هەیە کە کاریگەری لەسەر خزمەتی سەربازیت هەبێت؟:',
             helperStyle: TextStyle(color: Colors.grey, fontSize: 18),
             helperMaxLines: 3,
           ),
@@ -404,7 +404,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -424,7 +424,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -444,7 +444,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -452,7 +452,7 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _VisionItem,
               // The currently selected dropdown item
@@ -466,7 +466,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _VisionItem = newValue; // Update selected value
                   _vesionController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -477,7 +477,7 @@ class _HospitalFormState extends State<HospitalForm> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'بینین',
             //  hintText: 'ئایا چاویلکە یان عەدەسە بەکاردەهێنیت؟',
-            hintStyle: TextStyle(color: Colors.grey, fontSize: 22),
+            hintStyle: const TextStyle(color: Colors.grey, fontSize: 22),
             labelStyle: const TextStyle(
                 fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),
             border: const OutlineInputBorder(),
@@ -488,14 +488,14 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 15,
         ),
-        Divider(
+        const Divider(
           color: Color.fromRGBO(191, 189, 189, 1.0),
           thickness: 2,
         ),
         const SizedBox(
           height: 15,
         ),
-        Text(
+        const Text(
             style: TextStyle(color: Colors.green, fontSize: 25),
             'من ڕایدەگەیەنم کە هەموو زانیارییەکانی سەرەوە ڕاست ودروستن بە پێی باشترین زانیاریم'),
         const SizedBox(
@@ -504,21 +504,21 @@ class _HospitalFormState extends State<HospitalForm> {
         TextField(
           controller: dateInput,
           style: const TextStyle(fontSize: 20),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             suffixIcon: Icon(Icons.calendar_month_outlined),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     color: Color.fromRGBO(191, 189, 189, 1.0), width: 3)),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'بەرواری  پڕکردنەوە',
-            labelStyle: const TextStyle(
+            labelStyle: TextStyle(
                 fontSize: 30,
                 color: Colors.green,
                 fontWeight: FontWeight.bold),
             hintText: '',
-            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
-            border: const OutlineInputBorder(),
-            focusedBorder: const OutlineInputBorder(
+            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
                 borderSide:
                 BorderSide(color: Colors.blueAccent, width: 3)),
           ),
@@ -540,10 +540,10 @@ class _HospitalFormState extends State<HospitalForm> {
           },
         ),
 
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 40),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -587,21 +587,21 @@ class _HospitalFormState extends State<HospitalForm> {
         TextField(
           controller: dateInput,
           style: const TextStyle(fontSize: 20),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             suffixIcon: Icon(Icons.calendar_month_outlined),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     color: Color.fromRGBO(191, 189, 189, 1.0), width: 3)),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'BirthDay',
-            labelStyle: const TextStyle(
+            labelStyle: TextStyle(
                 fontSize: 30,
                 color: Colors.green,
                 fontWeight: FontWeight.bold),
             hintText: '',
-            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
-            border: const OutlineInputBorder(),
-            focusedBorder: const OutlineInputBorder(
+            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
                 borderSide:
                 BorderSide(color: Colors.blueAccent, width: 3)),
           ),
@@ -623,7 +623,7 @@ class _HospitalFormState extends State<HospitalForm> {
           },
         ),
 
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -631,7 +631,7 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _GenderItem,
               // The currently selected dropdown item
@@ -645,7 +645,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _GenderItem = newValue; // Update selected value
                   _genderController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -662,7 +662,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -670,12 +670,12 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             helperText:
-                '"Please specify any illnesses that have occurred or are currently present. \n'
+            '"Please specify any illnesses that have occurred or are currently present. \n'
                 'If there are none, please provide clarification."',
-            helperStyle: TextStyle(color: Colors.grey, fontSize: 18),
+            helperStyle: const TextStyle(color: Colors.grey, fontSize: 18),
             helperMaxLines: 3,
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _BloodItem,
               // The currently selected dropdown item
@@ -689,7 +689,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _BloodItem = newValue; // Update selected value
                   _blooodController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -706,7 +706,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -717,7 +717,7 @@ class _HospitalFormState extends State<HospitalForm> {
             // helperStyle: TextStyle(color: Colors.grey,fontSize: 15),
 
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _ChronicDiseasItem,
               // The currently selected dropdown item
@@ -731,7 +731,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _ChronicDiseasItem = newValue; // Update selected value
                   _chronicDiseasController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -742,7 +742,7 @@ class _HospitalFormState extends State<HospitalForm> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'Chronic Illness',
             //hintText: 'تکایە هەر نەخۆشییەک کە هەتبووە یان ئێستا هەتە دیاری بکە',
-            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
             labelStyle: const TextStyle(
                 fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),
             border: const OutlineInputBorder(),
@@ -750,7 +750,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -758,7 +758,7 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _AllergiesItem,
               // The currently selected dropdown item
@@ -772,7 +772,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _AllergiesItem = newValue; // Update selected value
                   _allergiesController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -783,22 +783,22 @@ class _HospitalFormState extends State<HospitalForm> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: ' Allergies',
             //hintText: 'ئایا هیچ هەستیارییەکت هەیە بۆ:',
-            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
             labelStyle: const TextStyle(
                 fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),
             border: const OutlineInputBorder(),
             focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
             helperText:
-                '"Please write the name of any medication you are currently using:"',
-            helperStyle: TextStyle(color: Colors.grey, fontSize: 18),
+            '"Please write the name of any medication you are currently using:"',
+            helperStyle: const TextStyle(color: Colors.grey, fontSize: 18),
             helperMaxLines: 3,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -821,7 +821,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -837,7 +837,7 @@ class _HospitalFormState extends State<HospitalForm> {
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
             helperText:
-                'Do you have any physical limitations that might affect your military service?',
+            'Do you have any physical limitations that might affect your military service?',
             helperStyle: TextStyle(color: Colors.grey, fontSize: 18),
             helperMaxLines: 3,
           ),
@@ -845,7 +845,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -865,7 +865,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -885,7 +885,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -893,7 +893,7 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _VisionItem,
               // The currently selected dropdown item
@@ -907,7 +907,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _VisionItem = newValue; // Update selected value
                   _vesionController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -918,7 +918,7 @@ class _HospitalFormState extends State<HospitalForm> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'Contact',
             //  hintText: 'ئایا چاویلکە یان عەدەسە بەکاردەهێنیت؟',
-            hintStyle: TextStyle(color: Colors.grey, fontSize: 22),
+            hintStyle: const TextStyle(color: Colors.grey, fontSize: 22),
             labelStyle: const TextStyle(
                 fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),
             border: const OutlineInputBorder(),
@@ -929,14 +929,14 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 15,
         ),
-        Divider(
+        const Divider(
           color: Color.fromRGBO(191, 189, 189, 1.0),
           thickness: 2,
         ),
         const SizedBox(
           height: 15,
         ),
-        Text(
+        const Text(
             style: TextStyle(color: Colors.green, fontSize: 25),
             'I declare that all the information provided above is true and correct to the best of my knowledge'),
         const SizedBox(
@@ -945,21 +945,21 @@ class _HospitalFormState extends State<HospitalForm> {
         TextField(
           controller: dateInput,
           style: const TextStyle(fontSize: 20),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             suffixIcon: Icon(Icons.calendar_month_outlined),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     color: Color.fromRGBO(191, 189, 189, 1.0), width: 3)),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'Submition Date',
-            labelStyle: const TextStyle(
+            labelStyle: TextStyle(
                 fontSize: 30,
                 color: Colors.green,
                 fontWeight: FontWeight.bold),
             hintText: '',
-            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
-            border: const OutlineInputBorder(),
-            focusedBorder: const OutlineInputBorder(
+            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
                 borderSide:
                 BorderSide(color: Colors.blueAccent, width: 3)),
           ),
@@ -980,10 +980,10 @@ class _HospitalFormState extends State<HospitalForm> {
             }
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 40),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -1003,7 +1003,7 @@ class _HospitalFormState extends State<HospitalForm> {
       ]);
     } else if (language == 'Arabic') {
       list.addAll([
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -1026,21 +1026,21 @@ class _HospitalFormState extends State<HospitalForm> {
         TextField(
           controller: dateInput,
           style: const TextStyle(fontSize: 20),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             suffixIcon: Icon(Icons.calendar_month_outlined),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     color: Color.fromRGBO(191, 189, 189, 1.0), width: 3)),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'تاريخ الميلاد',
-            labelStyle: const TextStyle(
+            labelStyle: TextStyle(
                 fontSize: 30,
                 color: Colors.green,
                 fontWeight: FontWeight.bold),
             hintText: '',
-            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
-            border: const OutlineInputBorder(),
-            focusedBorder: const OutlineInputBorder(
+            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
                 borderSide:
                 BorderSide(color: Colors.blueAccent, width: 3)),
           ),
@@ -1061,7 +1061,7 @@ class _HospitalFormState extends State<HospitalForm> {
             }
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -1069,7 +1069,7 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _GenderItem,
               // The currently selected dropdown item
@@ -1083,7 +1083,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _GenderItem = newValue; // Update selected value
                   _genderController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -1100,7 +1100,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -1109,10 +1109,10 @@ class _HospitalFormState extends State<HospitalForm> {
           decoration: InputDecoration(
             helperText: '"يرجى تحديد أي أمراض حدثت أو موجودة حاليًا. \n'
                 'إذا لم يكن هناك شيء، يرجى تقديم التوضيح."',
-            helperStyle: TextStyle(color: Colors.grey, fontSize: 18),
+            helperStyle: const TextStyle(color: Colors.grey, fontSize: 18),
             helperMaxLines: 3,
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _BloodItem,
               // The currently selected dropdown item
@@ -1126,7 +1126,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _BloodItem = newValue; // Update selected value
                   _blooodController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -1143,7 +1143,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -1151,7 +1151,7 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _ChronicDiseasItem,
               // The currently selected dropdown item
@@ -1165,7 +1165,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _ChronicDiseasItem = newValue; // Update selected value
                   _chronicDiseasController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -1175,7 +1175,7 @@ class _HospitalFormState extends State<HospitalForm> {
                     color: Color.fromRGBO(191, 189, 189, 1.0), width: 3)),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'الأمراض المزمنة',
-            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
             labelStyle: const TextStyle(
                 fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),
             border: const OutlineInputBorder(),
@@ -1183,7 +1183,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextField(
@@ -1191,7 +1191,7 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _AllergiesItem,
               // The currently selected dropdown item
@@ -1205,7 +1205,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _AllergiesItem = newValue; // Update selected value
                   _allergiesController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -1215,14 +1215,14 @@ class _HospitalFormState extends State<HospitalForm> {
                     color: Color.fromRGBO(191, 189, 189, 1.0), width: 3)),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'الحساسية',
-            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
             labelStyle: const TextStyle(
                 fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),
             border: const OutlineInputBorder(),
             focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.blueAccent, width: 3)),
             helperText: '"يرجى كتابة اسم أي دواء تستخدمه حاليًا:"',
-            helperStyle: TextStyle(color: Colors.grey, fontSize: 18),
+            helperStyle: const TextStyle(color: Colors.grey, fontSize: 18),
             helperMaxLines: 3,
           ),
         ),
@@ -1232,7 +1232,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -1254,7 +1254,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -1274,7 +1274,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -1302,7 +1302,7 @@ class _HospitalFormState extends State<HospitalForm> {
           // TextController connected to TextField
           decoration: InputDecoration(
             suffixIcon: DropdownButton<String>(
-              hint: Text(' '),
+              hint: const Text(' '),
               // Placeholder in the dropdown
               value: _VisionItem,
               // The currently selected dropdown item
@@ -1316,7 +1316,7 @@ class _HospitalFormState extends State<HospitalForm> {
                 setState(() {
                   _VisionItem = newValue; // Update selected value
                   _vesionController.text =
-                      newValue!; // Update TextField with selected value
+                  newValue!; // Update TextField with selected value
                 });
               },
               underline: Container(), // Remove default underline
@@ -1327,7 +1327,7 @@ class _HospitalFormState extends State<HospitalForm> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'الاتصال',
             // hintText: 'هل تستخدم نظارات أو عدسات؟',
-            hintStyle: TextStyle(color: Colors.grey, fontSize: 22),
+            hintStyle: const TextStyle(color: Colors.grey, fontSize: 22),
             labelStyle: const TextStyle(
                 fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),
             border: const OutlineInputBorder(),
@@ -1338,11 +1338,11 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 15,
         ),
-        Divider(color: Color.fromRGBO(191, 189, 189, 1.0), thickness: 2),
+        const Divider(color: Color.fromRGBO(191, 189, 189, 1.0), thickness: 2),
         const SizedBox(
           height: 15,
         ),
-        Text(
+        const Text(
           style: TextStyle(color: Colors.green, fontSize: 25),
           'أقر بأن جميع المعلومات المقدمة أعلاه صحيحة ودقيقة وفقًا لأفضل ما لدي من معرفة',
         ),
@@ -1352,21 +1352,21 @@ class _HospitalFormState extends State<HospitalForm> {
         TextField(
           controller: dateInput,
           style: const TextStyle(fontSize: 20),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             suffixIcon: Icon(Icons.calendar_month_outlined),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     color: Color.fromRGBO(191, 189, 189, 1.0), width: 3)),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'التاريخ اتقديم',
-            labelStyle: const TextStyle(
+            labelStyle: TextStyle(
                 fontSize: 30,
                 color: Colors.green,
                 fontWeight: FontWeight.bold),
             hintText: '',
-            hintStyle: const TextStyle(color: Colors.green, fontSize: 20),
-            border: const OutlineInputBorder(),
-            focusedBorder: const OutlineInputBorder(
+            hintStyle: TextStyle(color: Colors.green, fontSize: 20),
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
                 borderSide:
                 BorderSide(color: Colors.blueAccent, width: 3)),
           ),
@@ -1390,7 +1390,7 @@ class _HospitalFormState extends State<HospitalForm> {
         const SizedBox(
           height: 20,
         ),
-        TextField(
+        const TextField(
           style: TextStyle(fontSize: 40),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -1416,9 +1416,9 @@ class _HospitalFormState extends State<HospitalForm> {
   Widget build(BuildContext context) {
     // Determine text direction based on selected language
     TextDirection textDirection =
-        (selectedLanguage == 'Arabic' || selectedLanguage == 'Kurdish')
-            ? TextDirection.rtl
-            : TextDirection.ltr;
+    (selectedLanguage == 'Arabic' || selectedLanguage == 'Kurdish')
+        ? TextDirection.rtl
+        : TextDirection.ltr;
 
     // Determine message to display based on selected language
     String message;
@@ -1452,7 +1452,7 @@ class _HospitalFormState extends State<HospitalForm> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              BackButton(
+              const BackButton(
                 color: Colors.white,
               ),
               const Flexible(
@@ -1476,7 +1476,7 @@ class _HospitalFormState extends State<HospitalForm> {
                   ),
                   // Dropdown icon
                   // value: selectedLanguage,
-                  dropdownColor: Color.fromRGBO(101, 149, 101, 1.0),
+                  dropdownColor: const Color.fromRGBO(101, 149, 101, 1.0),
                   onChanged: (String? newValue) {
                     setState(() {
                       selectedLanguage = newValue;
@@ -1519,10 +1519,6 @@ class _HospitalFormState extends State<HospitalForm> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {},
-              child: Text(
-                submitText,
-                style: const TextStyle(color: Colors.green, fontSize: 25),
-              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 // White background
@@ -1534,8 +1530,12 @@ class _HospitalFormState extends State<HospitalForm> {
                 // Green border
                 shape: RoundedRectangleBorder(
                   borderRadius:
-                      BorderRadius.circular(5), // Rounded border radius
+                  BorderRadius.circular(5), // Rounded border radius
                 ),
+              ),
+              child: Text(
+                submitText,
+                style: const TextStyle(color: Colors.green, fontSize: 25),
               ),
             ),
             const SizedBox(height: 10),
